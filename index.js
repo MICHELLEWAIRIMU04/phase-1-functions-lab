@@ -1,35 +1,41 @@
-
-const HQ_STREET = 42
-const FEET_PER_BLOCK = 264
-
-
-function distanceFromHqInBlocks(43) {
-  return Math.abs(street - HQ_STREET);
+function distanceFromHqInBlocks(someValue) {
+  if (someValue >= 42) {
+    return someValue - 42
+  } else {
+    return 42 - someValue
+  }
 }
 
-
-function distanceFromHqInFeet(street) {
-  return distanceFromHqInBlocks(street) * FEET_PER_BLOCK;
+function distanceFromHqInFeet(someValue) {
+  return distanceFromHqInBlocks(someValue) * 264
 }
 
 function distanceTravelledInFeet(start, destination) {
-  return Math.abs(destination - start) * FEET_PER_BLOCK;
+  if (start >= destination) {
+    return (start - destination) * 264
+  } else {
+    return (destination - start) * 264
+  }
 }
-
 
 function calculatesFarePrice(start, destination) {
-  const distance = distanceTravelledInFeet(start, destination);
+  const distanceInFeet = distanceTravelledInFeet(start, destination)
 
-  if (distance <= 400) {
+
+  if (distanceInFeet <= 400) {
     return 0
   }
-  else if (distance > 400 && distance <= 2000) {
-    return ((distance - 400) * 0.02).toFixed(2)
+
+  if (distanceInFeet > 400 && distanceInFeet <= 2000) {
+    return (distanceInFeet - 400) * 0.02
   }
-  else if (distance > 2000 && distance <= 2500) {
-    return 25;
+
+  if (distanceInFeet > 2000 && distanceInFeet <= 2500) {
+    return 25
   }
-  else {
-    return 'cannot travel that far';
+
+  if (distanceInFeet > 2500) {
+    return 'cannot travel that far'
   }
 }
+
